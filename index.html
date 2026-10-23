@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Downtime Reporter</title>
+<meta name="theme-color" content="#a3b5d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Downtime">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app"></main>
+
+<template id="screenA">
+  <div class="screen a">
+    <div class="scroll bg-tap">
+      <button type="button" class="header" id="switchReport">Easy Downtime<br>Report Generator</button>
+      <p class="hint">Press name to switch report type!</p>
+      <div class="radios lineNo"></div>
+      <div class="radios lineType"></div>
+      <div class="row"><label>Lot Number:&nbsp;&nbsp;</label><select class="lot" data-max="30"></select></div>
+      <div class="row"><label>Start Time:&nbsp;</label>
+        <input id="startHour" class="t" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="HR">
+        <span>:</span>
+        <input id="startMinute" class="t" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="MN">
+        <label class="cb"><input type="checkbox" id="pmCheckbox"> PM </label></div>
+      <div class="row"><label>End Time:&nbsp;&nbsp;&nbsp;</label>
+        <input id="endHour" class="t" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="HR">
+        <span>:</span>
+        <input id="endMinute" class="t" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="MN">
+        <label class="cb"><input type="checkbox" id="nowCheckbox"> Now</label></div>
+      <div class="row"><label>Vision Time:&nbsp;&nbsp;</label>
+        <input id="visionTime" class="num" inputmode="numeric" pattern="[0-9]*" placeholder="All"><span class="small">&nbsp;minutes</span></div>
+      <div class="row"><label>HMI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input id="hmiErrors" type="text" placeholder="N/A"></div>
+      <div class="row"><label>Vision:&nbsp;&nbsp;</label><input id="visionErrors" type="text" placeholder="N/A"></div>
+      <div class="row"><label>Phenomenon:&nbsp;</label><textarea id="phenomenon" rows="1" autocapitalize="sentences"></textarea></div>
+      <div class="row"><label>Actions taken:&nbsp;</label><textarea id="actionsTaken" rows="1" autocapitalize="sentences"></textarea></div>
+      <pre class="output" id="mainOutputTextView"></pre>
+    </div>
+    <div class="bottom">
+      <button type="button" class="submit" id="submitButton">SUBMIT</button>
+      <p class="footnote">Message Houston with any bug reports<br>or improvement suggestions!</p>
+    </div>
+  </div>
+</template>
+
+<template id="screenB">
+  <div class="screen b bg-tap">
+    <div class="scroll bg-tap">
+      <button type="button" class="header" id="switchReport">Torn/Uncut Tab<br>Report Generator</button>
+      <p class="hint">Press name to switch report type!</p>
+      <div class="radios lineNo"></div>
+      <div class="radios lineType"></div>
+      <div class="row"><label>Lot Number:&nbsp;&nbsp;</label><select class="lot" data-max="40"></select></div>
+      <div class="radios reasonHeld"></div>
+      <div class="row"><label>NG Count:&nbsp;&nbsp;</label><input id="ngCount" class="num" inputmode="numeric" pattern="[0-9]*" placeholder="1"></div>
+      <div class="row"><label>Cell ID(s):&nbsp;&nbsp;</label><input id="cellIDs" type="text" class="wide" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="row pt"><label>Custom Footer:&nbsp;&nbsp;</label><input type="checkbox" id="useCustomFooter"></div>
+      <div class="row"><input id="customFooter" type="text" class="footer-in"></div>
+      <pre class="output" id="mainOutputTextView"></pre>
+    </div>
+    <div class="bottom">
+      <button type="button" class="submit" id="submitButton">SUBMIT</button>
+      <p class="footnote">Message Houston with any bug reports<br>or improvement suggestions!</p>
+    </div>
+  </div>
+</template>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
